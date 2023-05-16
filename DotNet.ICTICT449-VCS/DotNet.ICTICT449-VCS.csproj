@@ -49,7 +49,7 @@
     <Compile Include="resources\asciiArt\asciiRose.cs" />
     <Compile Include="resources\asciiArt\asciiSunfower.cs" />
     <Compile Include="resources\asciiArt\asciiTulip.cs" />
-    <Compile Include="resources\interface\Ascii.cs" />
+    <Compile Include="resources\interface\IAscii.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

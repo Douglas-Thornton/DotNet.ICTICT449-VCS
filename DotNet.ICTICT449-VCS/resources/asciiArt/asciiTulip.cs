@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DotNet.ICTICT449_VCS.resources.asciiArt
 {
 	internal class asciiTulip : IAscii
 	{
-		string art = @"
+		private string asciiName = "Tulip";
+
+		public string IName  // read-write instance property
+		{
+			get => asciiName;
+			set => asciiName = value;
+		}
+
+		private string ascii = @"
          .-==-.
         /{.=-.}\
        | / .  \ |
@@ -28,9 +37,10 @@ namespace DotNet.ICTICT449_VCS.resources.asciiArt
            ||/
            ||";
 
-		void IAscii.PrintAscii()
+		public string IAsciiArt  // read-write instance property
 		{
-			Console.WriteLine(art);
+			get => ascii;
+			set => ascii = value;
 		}
 	}
 }

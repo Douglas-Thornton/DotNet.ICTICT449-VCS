@@ -8,7 +8,15 @@ namespace DotNet.ICTICT449_VCS.resources.asciiArt
 {
 	internal class asciiDaisy : IAscii
 	{
-		string art = @"⠀⠀                           
+		private string asciiName = "Daisy";
+
+		public string IName  // read-write instance property
+		{
+			get => asciiName;
+			set => asciiName = value;
+		}
+
+		private string ascii = @"⠀⠀                           
                              .-.
                        __   /   \   __
                       (  `'.\   /.'`  )
@@ -27,9 +35,10 @@ namespace DotNet.ICTICT449_VCS.resources.asciiArt
                                |/__/
                                 \";
 
-		void IAscii.PrintAscii()
+		public string IAsciiArt  // read-write instance property
 		{
-			Console.WriteLine(art);
+			get => ascii;
+			set => ascii = value;
 		}
 	}
 }

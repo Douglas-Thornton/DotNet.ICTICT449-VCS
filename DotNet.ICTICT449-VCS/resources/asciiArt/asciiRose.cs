@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNet.ICTICT449_VCS.resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,16 @@ namespace DotNet.ICTICT449_VCS.resources.asciiArt
 {
 	internal class asciiRose : IAscii
 	{
-        string art = @"
+
+		private string asciiName = "Rose";
+
+		public string IName  // read-write instance property
+		{
+			get => asciiName;
+			set => asciiName = value;
+		}
+
+		private string ascii = @"
     _,--._.-,
    /\_r-,\_ )
 .-.) _;='_/ (.;
@@ -24,11 +34,10 @@ namespace DotNet.ICTICT449_VCS.resources.asciiArt
               `\\,
                 \|";
 
-		void IAscii.PrintAscii()
+		public string IAsciiArt  // read-write instance property
 		{
-            Console.WriteLine(art);
+			get => ascii;
+			set => ascii = value;
 		}
 	}
-
-    
 }

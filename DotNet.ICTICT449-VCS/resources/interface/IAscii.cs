@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace DotNet.ICTICT449_VCS.resources
 {
+
 	internal interface IAscii
 	{
-		void PrintAscii();
+		string IName 
+		{ 
+			get; 
+			set; 
+		}
+		string IAsciiArt
+		{
+			get;
+			set;
+		}
 	}
 }
