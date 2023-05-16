@@ -5,95 +5,127 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using System.Threading;
 
 class Program
 {
-	public static List<Type> GetImplementingTypesFromAssembly<T>()
-	{
-		var interfaceType = typeof(T);
-		var implementingTypes = Assembly.GetExecutingAssembly().GetTypes()
-			.Where(t => interfaceType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
-			.ToList();
+    private bool artTime = true;
 
-		return implementingTypes;
-	}
 
-	static void Main(string[] args)
+    static void Main(string[] args) => new Program().MainAsync(args).GetAwaiter().GetResult();
+
+    /// <summary>
+    /// The main function that starts the ASCII art console.
+    /// </summary>
+    public async Task MainAsync(string[] args)
     {
-        bool running = true;
-
-        while (running)
+        var asciiItems = LoadAsiiArt();
+        while (artTime)
         {
+            ListUserOptions(asciiItems);
 
-            int? choice = null;
-			
-			// Create a list that will contain classes that implement the IAscii interface.
-			List<IAscii> asciiList = new List<IAscii>();
+            ProcessUserInput(asciiItems);
+        }
 
-			// Specify the folder path.
-			string folderPath = "..\\..\\resources\\asciiArt";
+        ListUserOptions(asciiItems);
 
-			// Get all types that implement IAscci
-			var asciiClasses = GetImplementingTypesFromAssembly<IAscii>();
+        // Block this task until the program is closed.
+        //await Task.Delay(Timeout.Infinite);
+    }
 
-			var asciiItems = new List<IAscii>();
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public List<IAscii> LoadAsiiArt()
+	{
+        // Create a list that will contain classes that implement the IAscii interface.
+        List<IAscii> asciiList = new List<IAscii>();
 
-			// Foreach file that implements IAscii; instantiate them and add them to the list of Assci items.
-			foreach (var asciiClass in asciiClasses)
-			{
-				var ascii = (IAscii)Activator.CreateInstance(asciiClass);
-				asciiItems.Add(ascii);
-			}
+        // Get all types that implement IAscci
+        var asciiClasses = GetImplementingTypesFromAssembly<IAscii>();
 
-			// Program loop.
-			while (running)
-            {
-				Console.WriteLine("Select a flower from the list:");
-                foreach (var ascii in asciiItems) 
-                {
-					// Read out the options of the class list.
-					int index = asciiItems.FindIndex(a => a == ascii);
-					Console.WriteLine(index + ": " + ascii.IName);
-                }
+        var asciiItems = new List<IAscii>();
 
-				// Try to get a number from the user's imput.
-				if (!int.TryParse(Console.ReadLine(), out int parsedValue)) 
-                {
-					// If this wasnt possible set choice to null.
-                    choice = null;
-                }
-                else 
-                {
-					// Otherwise set choice to the selected value.
-					choice = parsedValue;
-				}
+        // For each file that implements IAscii; instantiate them and add them to the list of ASCII items.
+        foreach (var asciiClass in asciiClasses)
+        {
+            var ascii = (IAscii)Activator.CreateInstance(asciiClass);
+            asciiItems.Add(ascii);
+        }
 
-				// If choice wasnt null run program.
-				if (choice != null)
-                {
-					try 
-					{
-						// If the number entered is contained within the list of items print the art into console.
-						Console.WriteLine(asciiItems[choice.Value].IAsciiArt);
+		return asciiItems;
+    }
 
-					}
-					catch ( ArgumentOutOfRangeException ex)
-					{
-						// If the element wasn't contained give the user an error.
-						Console.WriteLine("Choice invalid. Please only enter a number from the list.");
-					}
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="asciiItems"></param>
+    public void ListUserOptions(List<IAscii> asciiItems)
+    {
+        Console.WriteLine("Please select an option (like a flower) from the list:");
 
-
-					Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-				}
-				else
-				{
-					// If the user's input wasnt able to be converted into a number give the user an error.
-					Console.WriteLine("Choice invalid. Please only enter a number from the list.");
-				}
-
-			}
+        foreach (var ascii in asciiItems)
+        {
+            // Read out the options of the class list.
+            int index = asciiItems.FindIndex(a => a == ascii);
+            Console.WriteLine(index + ": " + ascii.IName);
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="asciiItems"></param>
+    public void ProcessUserInput(List<IAscii> asciiItems)
+    {
+        var userInput = string.Empty;
+        int value = -1;
+
+        userInput = Console.ReadLine();
+
+        if (userInput.Equals("e") || userInput.Equals("E"))
+        {
+            Console.WriteLine("Thank you for using this ASCII art program. We hope to see you again.\nRemember 9/10 dentist recommend this ASCII art program.");
+            artTime = false;
+        }
+        else if (int.TryParse(userInput, out value))
+        {
+            try
+            {
+                // If the number entered is contained within the list of items print the art into console.
+                Console.WriteLine(asciiItems[value].IAsciiArt);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                // If the element wasn't contained give the user an error.
+                Console.WriteLine("Choice invalid. Please only enter a number from the list.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Try again, that either wasn't a number (a literal number) or this program is broken...");
+        }
+
+        Console.WriteLine("Press any key to continue...");
+    }
+
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static List<Type> GetImplementingTypesFromAssembly<T>()
+    {
+        var interfaceType = typeof(T);
+        var implementingTypes = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(t => interfaceType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
+            .ToList();
+
+        return implementingTypes;
+    }
+
 }
