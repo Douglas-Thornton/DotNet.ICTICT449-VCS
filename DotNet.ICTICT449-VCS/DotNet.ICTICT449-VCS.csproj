@@ -45,6 +45,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="resources\asciiArt\asciiDaisy.cs" />
+    <Compile Include="resources\asciiArt\asciiRose.cs" />
+    <Compile Include="resources\asciiArt\asciiSunfower.cs" />
+    <Compile Include="resources\asciiArt\asciiTulip.cs" />
+    <Compile Include="resources\interface\Ascii.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
