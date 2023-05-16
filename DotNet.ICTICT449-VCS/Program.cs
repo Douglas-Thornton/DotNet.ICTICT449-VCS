@@ -94,8 +94,19 @@ class Program
         {
             try
             {
-                // If the number entered is contained within the list of items print the art into console.
-                Console.WriteLine(asciiItems[value].IAsciiArt);
+                if (value < 0 || value > asciiItems.Count)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("WOAH SOMETHING HAS GONE WRONG HERE, EITHER YOU HAVE ENTERED A NEGITIVE NUMBER OR THE ASCII OPTION IS NOT ON THE LIST!!!");
+                    Console.WriteLine("You have to deal with this until the option is valid.");
+                }
+                else
+                {
+                    // If the number entered is contained within the list of items print the art into console.
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine(asciiItems[value].IAsciiArt);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             }
             catch (ArgumentOutOfRangeException ex)
             {
@@ -105,7 +116,9 @@ class Program
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("Try again, that either wasn't a number (a literal number) or this program is broken...");
+            Console.WriteLine("You have to deal with this until the option is valid.");
         }
 
         Console.WriteLine("Press any key to continue...");
