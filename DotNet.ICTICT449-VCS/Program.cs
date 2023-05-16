@@ -19,7 +19,6 @@ namespace DotNet.ICTICT449_VCS
 			}
 			Console.WriteLine("Goodbye world!");
 			Thread.Sleep(5000);
-			Thread.Sleep("5000");
 		}
 	}
 }
