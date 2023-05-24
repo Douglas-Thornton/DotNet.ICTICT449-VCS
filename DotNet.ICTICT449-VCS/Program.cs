@@ -84,7 +84,6 @@ class Program
     {
         var userInput = string.Empty;
 
-        // Remove 1 from user input to match what they actually meant to select.
         int value = -1;
 
         userInput = Console.ReadLine();
@@ -108,6 +107,8 @@ class Program
                 else
                 {
                     // If the number entered is contained within the list of items print the art into console.
+                    // Adjust value to match what they intended to select.
+                    value--;
                     asciiItems[value].printArt("");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
