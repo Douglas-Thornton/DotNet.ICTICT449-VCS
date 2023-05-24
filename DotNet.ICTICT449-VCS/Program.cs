@@ -13,6 +13,10 @@ class Program
     private bool artTime = true;
 
 
+
+    // Douglas Thornton made this change!
+    // GitSweats made this change!
+    
     static void Main(string[] args) => new Program().MainAsync(args).GetAwaiter().GetResult();
 
     /// <summary>
