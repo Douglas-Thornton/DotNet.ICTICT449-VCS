@@ -22,12 +22,12 @@ namespace DotNet.ICTICT449_VCS.resources.asciiArt
                       (  `'.\   /.'`  )
                        '-._.(;;;)._.-'
                        .-'  ,`""`,  '-.
-                      (__.-'/   \'-.__)/)_
-                            \   /\    / / )
-                             '-'  |   \/.-')
-                             ,    | .'/\'..)
-                             |\   |/  | \_)
-                             \ |  |   \_/
+                      (__.-'/   \'-.__)
+                            \   /\    
+                             '-'  |
+                             ,    |
+                             |\   |
+                             \ |  |
                               | \ /
                                \|/    _,
                                 /  __/ /
@@ -40,5 +40,31 @@ namespace DotNet.ICTICT449_VCS.resources.asciiArt
 			get => ascii;
 			set => ascii = value;
 		}
+
+            public void printArt(string optionalColour)
+            {
+                  Console.ForegroundColor = ConsoleColor.White;
+                  Console.WriteLine(@"
+                             .-.
+                       __   /   \   __
+                      (  `'.\   /.'`  )
+                       '-._.(;;;)._.-'
+                       .-'  ,`""`,  '-.
+                      (__.-'/   \'-.__)
+                            \   /\    
+                             '-'  |");
+                  Console.ForegroundColor = ConsoleColor.Green;
+                  Console.WriteLine(@"                                  |
+                                  |
+                             ,    |
+                             |\   |
+                             \ |  |
+                              | \ /
+                               \|/    _,
+                                /  __/ /
+                               | _/ _.'
+                               |/__/
+                                \");
+            }
 	}
 }
