@@ -12,7 +12,7 @@ class Program
 {
     private bool artTime = true;
 
-    // GitSweats made this one!
+    // GitSweats made this change!
 
     // Douglas Thornton made this change!
 
