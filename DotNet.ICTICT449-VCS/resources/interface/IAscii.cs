@@ -19,5 +19,7 @@ namespace DotNet.ICTICT449_VCS.resources
 			get;
 			set;
 		}
+
+		void printArt(string optionalColour);
 	}
 }

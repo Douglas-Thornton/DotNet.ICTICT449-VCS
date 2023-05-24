@@ -69,9 +69,11 @@ class Program
         foreach (var ascii in asciiItems)
         {
             // Read out the options of the class list.
-            int index = asciiItems.FindIndex(a => a == ascii);
+            // Add +1 to index so user isnt exposed to the horrors of indexes starting at 0.
+            int index = asciiItems.FindIndex(a => a == ascii)+1;
             Console.WriteLine(index + ": " + ascii.IName);
         }
+        Console.WriteLine("E: Exit");
     }
 
     /// <summary>
@@ -81,6 +83,8 @@ class Program
     public void ProcessUserInput(List<IAscii> asciiItems)
     {
         var userInput = string.Empty;
+
+        // Remove 1 from user input to match what they actually meant to select.
         int value = -1;
 
         userInput = Console.ReadLine();
@@ -92,6 +96,7 @@ class Program
         }
         else if (int.TryParse(userInput, out value))
         {
+  
             try
             {
                 if (value < 0 || value > asciiItems.Count)
@@ -103,8 +108,12 @@ class Program
                 else
                 {
                     // If the number entered is contained within the list of items print the art into console.
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine(asciiItems[value].IAsciiArt);
+                    //Console.ForegroundColor = ConsoleColor.Magenta;
+                    //Console.WriteLine(asciiItems[value].IAsciiArt);
+
+                    // Adjust value to match what they intended to select.
+                    value--;
+                    asciiItems[value].printArt("");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }

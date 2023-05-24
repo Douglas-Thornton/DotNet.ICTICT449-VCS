@@ -39,5 +39,27 @@ namespace DotNet.ICTICT449_VCS.resources.asciiArt
 			get => ascii;
 			set => ascii = value;
 		}
+
+		public void printArt(string optionalColour)
+		{
+			Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(@"
+                _,--._.-,
+               /\_r-,\_ )
+            .-.) _;='_/ (.;
+             \ \'     \/S )
+              L.'-. _.'|-'
+             <_`-'\'_.'/
+               `'-._(\");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(@"                     \\
+                ___   \\,      ___
+                \ .'-. \\   .-'_. /
+                 '._' '.\\/.-'_.'
+                    '--``\('--'
+                          \\
+                          `\\,
+                            \|");
+        }
 	}
 }
