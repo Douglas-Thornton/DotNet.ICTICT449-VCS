@@ -14,6 +14,7 @@ class Program
 
     // GitSweats made this change! 
 
+    // Douglas Thornton made this change!
 
     static void Main(string[] args) => new Program().MainAsync(args).GetAwaiter().GetResult();
 
