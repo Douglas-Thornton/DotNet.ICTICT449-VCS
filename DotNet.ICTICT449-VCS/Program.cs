@@ -10,7 +10,7 @@ using System.Threading;
 
 class Program
 {
-    private bool artTime = true;
+    private bool artTime;
 
 
     static void Main(string[] args) => new Program().MainAsync(args).GetAwaiter().GetResult();
@@ -108,11 +108,6 @@ class Program
                 else
                 {
                     // If the number entered is contained within the list of items print the art into console.
-                    //Console.ForegroundColor = ConsoleColor.Magenta;
-                    //Console.WriteLine(asciiItems[value].IAsciiArt);
-
-                    // Adjust value to match what they intended to select.
-                    value--;
                     asciiItems[value].printArt("");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
