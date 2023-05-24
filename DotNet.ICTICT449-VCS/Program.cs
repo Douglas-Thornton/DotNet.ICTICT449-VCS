@@ -10,7 +10,7 @@ using System.Threading;
 
 class Program
 {
-    private bool artTime;
+    private bool artTime = true;
 
 
     static void Main(string[] args) => new Program().MainAsync(args).GetAwaiter().GetResult();
